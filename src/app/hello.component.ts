@@ -1,6 +1,8 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   Component,
+  DoCheck,
   Input,
   OnDestroy,
   OnInit,
@@ -11,7 +13,9 @@ import {
   template: `<h1>Hello Raja {{name}}!</h1> {{child}}`,
   styles: [`h1 { font-family: Lato; }`],
 })
-export class HelloComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HelloComponent
+  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked, DoCheck
+{
   @Input() name: string;
   intervaltime = null;
   child = 'Hero Angular';
@@ -29,9 +33,17 @@ export class HelloComponent implements OnInit, OnDestroy, AfterViewInit {
     //   console.log(new Date());
     // }, 1000);
   }
-  ngAfterViewInit() {}
+  ngDoCheck() {
+    console.log('child doCheck');
+  }
+  ngAfterViewInit() {
+    console.log('child ngAfterViewInit called', this.child);
+  }
   ngOnDestroy() {
     console.log('Component Destroy');
     clearInterval(this.intervaltime);
+  }
+  ngAfterViewChecked() {
+    console.log('child component AfterViewChecked');
   }
 }
