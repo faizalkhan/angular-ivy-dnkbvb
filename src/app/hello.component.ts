@@ -28,7 +28,7 @@ export class HelloComponent
     console.log('OnChanges called', SimpleChange.name.currentValue);
   }
   ngOnInit() {
-    console.log('Component Initialized');
+    console.log('child ngonInit Initialized');
     // this.intervaltime = setInterval(() => {
     //   console.log(new Date());
     // }, 1000);
