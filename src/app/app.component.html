@@ -1,4 +1,6 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<hello *ngIf="show" [name]="name"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<button (click)="toogle()">Toogle</button>
+
+<input [(ngModel)]="name" />
