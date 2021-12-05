@@ -1,4 +1,6 @@
 import {
+    AfterContentChecked,
+  AfterContentInit,
   AfterViewChecked,
   AfterViewInit,
   Component,
@@ -13,8 +15,7 @@ import {
   template: `<h1>Hello Raja {{name}}!</h1> {{child}}`,
   styles: [`h1 { font-family: Lato; }`],
 })
-export class HelloComponent
-  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked, DoCheck
+export class HelloComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked, DoCheck, AfterContentInit, AfterContentChecked
 {
   @Input() name: string;
   intervaltime = null;
@@ -45,5 +46,14 @@ export class HelloComponent
   }
   ngAfterViewChecked() {
     console.log('child component AfterViewChecked');
+  }
+  ngAfterContentInit()
+  {
+    console.log('child component ngAfterContentInit');
+  }
+
+  ngAfterContentChecked()
+  {
+    console.log('child component ngAfterContentChecked');
   }
 }

@@ -1,4 +1,6 @@
 import {
+  AfterContentChecked,
+  AfterContentInit,
   AfterViewChecked,
   AfterViewInit,
   Component,
@@ -13,7 +15,14 @@ import { HelloComponent } from './hello.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit, AfterViewChecked, DoCheck {
+export class AppComponent
+  implements
+    AfterViewInit,
+    AfterViewChecked,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked
+{
   name = 'Angular ' + VERSION.major;
   show = false;
   @ViewChild(HelloComponent, { static: false }) childvar: HelloComponent;
@@ -21,8 +30,7 @@ export class AppComponent implements AfterViewInit, AfterViewChecked, DoCheck {
   toogle() {
     this.show = !this.show;
   }
-  ngDoCheck()
-  {
+  ngDoCheck() {
     console.log('Parent doCheck');
   }
   ngAfterViewInit() {
@@ -31,5 +39,12 @@ export class AppComponent implements AfterViewInit, AfterViewChecked, DoCheck {
   }
   ngAfterViewChecked() {
     console.log('parent component AfterViewChecked');
+  }
+  ngAfterContentInit() {
+    console.log('Parent component ngAfterContentInit');
+  }
+
+  ngAfterContentChecked() {
+    console.log('Parent component ngAfterContentChecked');
   }
 }
